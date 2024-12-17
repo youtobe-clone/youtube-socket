@@ -9,7 +9,11 @@ const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "*", methods: ["GET", "POST"] },
+  cors: {
+    origin: "https://on-tube.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
 const PORT = process.env.PORT || 5000;
 
