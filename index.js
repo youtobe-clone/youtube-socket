@@ -8,7 +8,9 @@ import cors from "cors";
 const app = express();
 
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
+const io = new Server(server, {
+  cors: { origin: "*", methods: ["GET", "POST"] },
+});
 const PORT = process.env.PORT || 5000;
 
 let users = [];
@@ -16,17 +18,6 @@ let users = [];
 app.get("/", (req, res) => {
   res.send("Hello socket server");
 });
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      callback(null, true);
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
 
 io.on("connection", (socket) => {
   // on user connection
