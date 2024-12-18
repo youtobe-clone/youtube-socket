@@ -2,8 +2,9 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import dotenv from "dotenv";
-dotenv.config();
 import cors from "cors";
+
+dotenv.config();
 
 const app = express();
 
