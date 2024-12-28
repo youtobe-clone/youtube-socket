@@ -40,8 +40,10 @@ io.on("connection", (socket) => {
   // on user create new notification
   socket.on("create-new-notification", (response) => {
     const user = response?.notification?.user;
-    const client = users.filter((item) => user.includes(item._id));
-
+    const client = users.filter((item) => user.includes(item?.data?._id));
+    console.log("users:", users);
+    console.log("user array:", user);
+    console.log("client:", client);
     if (client.length > 0) {
       client.forEach((item) => {
         socket
